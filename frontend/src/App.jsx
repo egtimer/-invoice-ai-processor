@@ -85,11 +85,11 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700">
+    <div className="bg-gradient-app">
       {/* Header con gradiente vibrante */}
-      <header className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-2xl">
+      <header className="bg-gradient-header shadow-2xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center space-x-4">
               <div className="text-5xl">📄</div>
               <div>
@@ -121,11 +121,11 @@ function App() {
 
       {/* Sección principal */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero section con colores vibrantes */}
+        {/* Hero section */}
         <div className="text-center mb-12">
           <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg">
             Extract Invoice Data
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400 mt-2">
+            <span className="block text-gradient mt-2">
               Instantly with AI
             </span>
           </h2>
@@ -134,7 +134,7 @@ function App() {
           </p>
         </div>
 
-        {/* Área de upload súper colorida */}
+        {/* Área de upload */}
         {!invoiceData ? (
           <div className="max-w-3xl mx-auto mb-12">
             <div
@@ -143,8 +143,8 @@ function App() {
               onDrop={handleDrop}
               className={`relative rounded-3xl p-12 border-4 border-dashed transition-all duration-300 transform ${
                 isDragging
-                  ? 'border-yellow-400 bg-yellow-500 bg-opacity-20 scale-105 shadow-2xl'
-                  : 'border-blue-300 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-102'
+                  ? 'border-yellow-400 bg-gradient-upload-drag scale-105 shadow-2xl'
+                  : 'border-blue-300 bg-gradient-upload hover:bg-gradient-upload-hover hover:scale-102'
               }`}
             >
               <input
@@ -156,7 +156,6 @@ function App() {
               />
               
               <div className="text-center">
-                {/* Emoji grande y expresivo */}
                 <div className={`text-9xl mb-6 transition-all duration-300 ${
                   isDragging ? 'scale-110' : 'hover:scale-105'
                 }`}>
@@ -180,7 +179,7 @@ function App() {
                   <div className="mt-8">
                     <div className="bg-gray-700 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
                       <div 
-                        className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 h-full transition-all duration-500 ease-out shadow-lg"
+                        className="progress-bar h-full transition-all duration-500 ease-out shadow-lg"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
                     </div>
@@ -201,11 +200,10 @@ function App() {
             </div>
           </div>
         ) : (
-          // Resultados con colores vibrantes
           <div className="max-w-5xl mx-auto mb-12">
             <div className="bg-white rounded-3xl p-8 shadow-2xl">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 flex items-center">
+              <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+                <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
                   ✅ Extraction Complete!
                 </h3>
                 <button
@@ -218,7 +216,7 @@ function App() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {invoiceData.issuer && (
-                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200 shadow-lg">
+                  <div className="card-blue rounded-2xl p-6 shadow-lg">
                     <h4 className="text-2xl font-bold text-blue-800 mb-4">
                       🏢 Issuer Information
                     </h4>
@@ -237,7 +235,7 @@ function App() {
                 )}
                 
                 {invoiceData.receiver && (
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200 shadow-lg">
+                  <div className="card-green rounded-2xl p-6 shadow-lg">
                     <h4 className="text-2xl font-bold text-green-800 mb-4">
                       👤 Receiver Information
                     </h4>
@@ -255,7 +253,7 @@ function App() {
                   </div>
                 )}
                 
-                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-200 shadow-lg">
+                <div className="card-yellow rounded-2xl p-6 shadow-lg">
                   <h4 className="text-2xl font-bold text-orange-800 mb-4">
                     📋 Invoice Details
                   </h4>
@@ -269,7 +267,7 @@ function App() {
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border-2 border-pink-200 shadow-lg">
+                <div className="card-pink rounded-2xl p-6 shadow-lg">
                   <h4 className="text-2xl font-bold text-pink-800 mb-4">
                     💰 Financial Summary
                   </h4>
@@ -290,7 +288,7 @@ function App() {
               </div>
               
               {invoiceData.line_items && invoiceData.line_items.length > 0 && (
-                <div className="mt-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 border-2 border-indigo-200 shadow-lg">
+                <div className="mt-6 card-indigo rounded-2xl p-6 shadow-lg">
                   <h4 className="text-2xl font-bold text-indigo-800 mb-4">📦 Line Items</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full">
@@ -320,21 +318,21 @@ function App() {
           </div>
         )}
 
-        {/* Tarjetas de características con colores vibrantes y emojis */}
+        {/* Tarjetas de características */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
+          <div className="feature-card-blue rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
             <div className="text-7xl mb-4">👁️</div>
             <h3 className="text-2xl font-bold text-white mb-3">Advanced OCR</h3>
             <p className="text-blue-50 text-lg">Tesseract-powered optical character recognition extracts text from PDFs with exceptional accuracy</p>
           </div>
           
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
+          <div className="feature-card-purple rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
             <div className="text-7xl mb-4">🧠</div>
             <h3 className="text-2xl font-bold text-white mb-3">NLP Intelligence</h3>
             <p className="text-purple-50 text-lg">spaCy-powered natural language processing identifies entities and relationships automatically</p>
           </div>
           
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
+          <div className="feature-card-green rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
             <div className="text-7xl mb-4">✅</div>
             <h3 className="text-2xl font-bold text-white mb-3">Smart Validation</h3>
             <p className="text-green-50 text-lg">Cross-validation of financial calculations with confidence scoring for quality assurance</p>
@@ -342,11 +340,11 @@ function App() {
         </div>
       </main>
 
-      {/* Footer vibrante */}
-      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 mt-16">
+      {/* Footer */}
+      <footer className="bg-gray-900 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="mb-4 md:mb-0 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
               <p className="text-gray-300 font-semibold text-lg">
                 © 2025 Invoice AI Processor
               </p>

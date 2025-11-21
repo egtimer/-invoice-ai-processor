@@ -2,6 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .bg-gradient-app {
+    background: linear-gradient(135deg, #1e1b4b 0%, #6b21a8 50%, #be185d 100%);
+    min-height: 100vh;
+  }
+
+  .bg-gradient-header {
+    background: linear-gradient(90deg, #2563eb 0%, #9333ea 50%, #ec4899 100%);
+  }
+
+  .bg-gradient-upload {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  }
+
+  .bg-gradient-upload-hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  }
+
+  .bg-gradient-upload-drag {
+    background: linear-gradient(135deg, rgba(234, 179, 8, 0.3) 0%, rgba(234, 179, 8, 0.2) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #fbbf24 0%, #ec4899 50%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .card-blue {
+    background: linear-gradient(135deg, #dbeafe 0%, #e9d5ff 100%);
+    border: 2px solid #93c5fd;
+  }
+
+  .card-green {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border: 2px solid #6ee7b7;
+  }
+
+  .card-yellow {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fcd34d;
+  }
+
+  .card-pink {
+    background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+    border: 2px solid #f9a8d4;
+  }
+
+  .card-indigo {
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border: 2px solid #a5b4fc;
+  }
+
+  .feature-card-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  }
+
+  .feature-card-purple {
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  }
+
+  .feature-card-green {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  .progress-bar {
+    background: linear-gradient(90deg, #fbbf24 0%, #ec4899 50%, #a855f7 100%);
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,12 +93,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
 }
