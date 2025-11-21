@@ -50,7 +50,7 @@ class Settings(BaseSettings):
     # NLP/NER configuration
     # SpaCy model to use for entity recognition
     # Options: es_core_news_sm, es_core_news_md, es_core_news_lg
-    SPACY_MODEL = "es_core_news_md"    
+    SPACY_MODEL: str = "es_core_news_md"   
     # Hugging Face model for advanced NER
     # This model is specifically trained for invoice entity extraction
     HF_MODEL: str = "dslim/bert-base-NER"
