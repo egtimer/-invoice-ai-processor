@@ -77,68 +77,79 @@ function App() {
     }
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-      </div>
+  const resetApp = () => {
+    setFile(null)
+    setInvoiceData(null)
+    setError(null)
+    setUploadProgress(0)
+  }
 
-      {/* Header */}
-      <header className="relative z-10 px-6 py-8">
-        <div className="max-w-7xl mx-auto">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700">
+      {/* Header con gradiente vibrante */}
+      <header className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '24px', maxHeight: '24px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <div className="flex items-center space-x-4">
+              <div className="bg-white rounded-xl p-3 shadow-lg transform hover:scale-110 transition-transform">
+                <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                  <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd"/>
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white">Invoice AI Processor</h1>
-                <p className="text-sm text-purple-200">Intelligent Document Processing</p>
+                <h1 className="text-3xl font-bold text-white">Invoice AI Processor</h1>
+                <p className="text-blue-100">Intelligent Document Processing</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <a href="https://invoice-ai-processor-production.up.railway.app/docs" target="_blank" rel="noopener noreferrer" className="text-purple-200 hover:text-white transition-colors">
-                <span className="text-sm font-medium">API Docs</span>
+            <div className="flex space-x-4">
+              <a 
+                href="https://invoice-ai-processor-production.up.railway.app/docs" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg"
+              >
+                API Docs
               </a>
-              <a href="https://github.com/egtimer/-invoice-ai-processor" target="_blank" rel="noopener noreferrer" className="text-purple-200 hover:text-white transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" style={{maxWidth: '24px', maxHeight: '24px'}}>
-                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                </svg>
+              <a 
+                href="https://github.com/egtimer/-invoice-ai-processor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors shadow-lg"
+              >
+                GitHub
               </a>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <main className="relative z-10 px-6 py-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-white mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-                Extract Invoice Data Instantly
-              </span>
-            </h2>
-            <p className="text-xl text-purple-200 max-w-2xl mx-auto">
-              Powered by advanced OCR and Natural Language Processing to automatically extract and structure invoice data with high accuracy
-            </p>
-          </div>
+      {/* Sección principal */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Hero section con colores vibrantes */}
+        <div className="text-center mb-12">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg">
+            Extract Invoice Data
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-400 to-blue-400">
+              Instantly with AI
+            </span>
+          </h2>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+            🚀 Powered by advanced OCR and NLP • ⚡ Fast and accurate • 🎯 Enterprise-grade quality
+          </p>
+        </div>
 
-          {/* Upload Section */}
-          <div className="max-w-3xl mx-auto mb-16">
+        {/* Área de upload súper colorida */}
+        {!invoiceData ? (
+          <div className="max-w-3xl mx-auto mb-12">
             <div
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative bg-white/10 backdrop-blur-lg rounded-2xl p-12 border-2 border-dashed transition-all duration-300 ${
+              className={`relative rounded-3xl p-12 border-4 border-dashed transition-all duration-300 transform ${
                 isDragging
-                  ? 'border-blue-400 bg-blue-500/20 scale-105'
-                  : 'border-purple-400/50 hover:border-purple-400 hover:bg-white/15'
+                  ? 'border-yellow-400 bg-yellow-500 bg-opacity-20 scale-105 shadow-2xl'
+                  : 'border-blue-300 bg-white bg-opacity-10 hover:bg-opacity-20 hover:scale-102'
               }`}
             >
               <input
@@ -150,212 +161,223 @@ function App() {
               />
               
               <div className="text-center">
-                <div className="mb-6 inline-block">
-                  <div className={`w-20 h-20 flex-shrink-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl transition-transform duration-300 ${
-                    isDragging ? 'scale-110' : ''
+                {/* Ícono grande y colorido */}
+                <div className="mb-8">
+                  <div className={`w-32 h-32 mx-auto bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl transform transition-all duration-300 ${
+                    isDragging ? 'scale-110 rotate-12' : 'hover:scale-105'
                   }`}>
-                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '40px', maxHeight: '40px'}}>
+                    <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                   </div>
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {isProcessing ? 'Processing Your Invoice...' : 'Upload Your Invoice'}
+                <h3 className="text-3xl font-bold text-white mb-3">
+                  {isProcessing ? '🔄 Processing Your Invoice...' : '📄 Upload Your Invoice'}
                 </h3>
-                <p className="text-purple-200 mb-4">
-                  Drag and drop your PDF invoice here or click to browse
+                <p className="text-xl text-blue-100 mb-6">
+                  {isDragging ? '📥 Drop it here!' : 'Drag & drop your PDF or click to browse'}
                 </p>
                 
                 {file && !isProcessing && (
-                  <div className="bg-green-500/20 border border-green-400/50 rounded-lg p-3 mb-4 inline-block">
-                    <p className="text-green-300 font-medium">{file.name}</p>
+                  <div className="bg-green-500 rounded-xl p-4 mb-6 inline-block shadow-lg">
+                    <p className="text-white font-bold text-lg">✅ {file.name}</p>
                   </div>
                 )}
                 
                 {isProcessing && (
-                  <div className="mt-6">
-                    <div className="bg-white/10 rounded-full h-3 mb-2 overflow-hidden">
+                  <div className="mt-8">
+                    <div className="bg-gray-700 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
                       <div 
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-full transition-all duration-500 ease-out"
+                        className="bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 h-full transition-all duration-500 ease-out shadow-lg"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
                     </div>
-                    <p className="text-sm text-purple-300">Processing... {uploadProgress}%</p>
+                    <p className="text-white font-semibold">⏳ Processing... {uploadProgress}%</p>
                   </div>
                 )}
                 
                 {error && (
-                  <div className="bg-red-500/20 border border-red-400/50 rounded-lg p-4 mt-4">
-                    <p className="text-red-300">{error}</p>
+                  <div className="bg-red-500 rounded-xl p-4 mt-6 shadow-lg">
+                    <p className="text-white font-bold">❌ {error}</p>
                   </div>
                 )}
                 
-                <p className="text-sm text-purple-300 mt-4">Maximum file size: 10MB • PDF format only</p>
+                <p className="text-blue-200 mt-6">
+                  📊 Maximum: 10MB • 📑 Format: PDF only
+                </p>
               </div>
             </div>
           </div>
-
-          {/* Results Section */}
-          {invoiceData && (
-            <div className="max-w-4xl mx-auto mb-16">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-purple-400/30">
-                <h3 className="text-3xl font-bold text-white mb-6 flex items-center">
-                  <div className="w-8 h-8 flex-shrink-0 mr-3">
-                    <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '32px', maxHeight: '32px'}}>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  Extraction Complete
+        ) : (
+          // Resultados con colores vibrantes
+          <div className="max-w-5xl mx-auto mb-12">
+            <div className="bg-white rounded-3xl p-8 shadow-2xl">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600 flex items-center">
+                  ✅ Extraction Complete!
                 </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {invoiceData.issuer && (
-                    <div className="bg-white/5 rounded-xl p-6 border border-purple-400/20">
-                      <h4 className="text-lg font-semibold text-purple-300 mb-4">Issuer Information</h4>
-                      <div className="space-y-2">
-                        {invoiceData.issuer.name && (
-                          <p className="text-white"><span className="text-purple-200">Name:</span> {invoiceData.issuer.name}</p>
-                        )}
-                        {invoiceData.issuer.tax_id && (
-                          <p className="text-white"><span className="text-purple-200">Tax ID:</span> {invoiceData.issuer.tax_id}</p>
-                        )}
-                        {invoiceData.issuer.address && (
-                          <p className="text-white"><span className="text-purple-200">Address:</span> {invoiceData.issuer.address}</p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  
-                  {invoiceData.receiver && (
-                    <div className="bg-white/5 rounded-xl p-6 border border-purple-400/20">
-                      <h4 className="text-lg font-semibold text-purple-300 mb-4">Receiver Information</h4>
-                      <div className="space-y-2">
-                        {invoiceData.receiver.name && (
-                          <p className="text-white"><span className="text-purple-200">Name:</span> {invoiceData.receiver.name}</p>
-                        )}
-                        {invoiceData.receiver.tax_id && (
-                          <p className="text-white"><span className="text-purple-200">Tax ID:</span> {invoiceData.receiver.tax_id}</p>
-                        )}
-                        {invoiceData.receiver.address && (
-                          <p className="text-white"><span className="text-purple-200">Address:</span> {invoiceData.receiver.address}</p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="bg-white/5 rounded-xl p-6 border border-purple-400/20">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-4">Invoice Details</h4>
-                    <div className="space-y-2">
-                      {invoiceData.invoice_number && (
-                        <p className="text-white"><span className="text-purple-200">Number:</span> {invoiceData.invoice_number}</p>
+                <button
+                  onClick={resetApp}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg transform hover:scale-105"
+                >
+                  🔄 Process Another
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {invoiceData.issuer && (
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200 shadow-lg">
+                    <h4 className="text-2xl font-bold text-blue-800 mb-4 flex items-center">
+                      🏢 Issuer
+                    </h4>
+                    <div className="space-y-2 text-gray-700">
+                      {invoiceData.issuer.name && (
+                        <p><span className="font-semibold">Name:</span> {invoiceData.issuer.name}</p>
                       )}
-                      {invoiceData.date && (
-                        <p className="text-white"><span className="text-purple-200">Date:</span> {invoiceData.date}</p>
+                      {invoiceData.issuer.tax_id && (
+                        <p><span className="font-semibold">Tax ID:</span> {invoiceData.issuer.tax_id}</p>
                       )}
-                    </div>
-                  </div>
-                  
-                  <div className="bg-white/5 rounded-xl p-6 border border-purple-400/20">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-4">Financial Summary</h4>
-                    <div className="space-y-2">
-                      {invoiceData.subtotal && (
-                        <p className="text-white"><span className="text-purple-200">Subtotal:</span> {invoiceData.subtotal}</p>
+                      {invoiceData.issuer.address && (
+                        <p><span className="font-semibold">Address:</span> {invoiceData.issuer.address}</p>
                       )}
-                      {invoiceData.tax && (
-                        <p className="text-white"><span className="text-purple-200">Tax:</span> {invoiceData.tax}</p>
-                      )}
-                      {invoiceData.total && (
-                        <p className="text-2xl font-bold text-white mt-4"><span className="text-purple-200">Total:</span> {invoiceData.total}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                
-                {invoiceData.line_items && invoiceData.line_items.length > 0 && (
-                  <div className="mt-6 bg-white/5 rounded-xl p-6 border border-purple-400/20">
-                    <h4 className="text-lg font-semibold text-purple-300 mb-4">Line Items</h4>
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="border-b border-purple-400/20">
-                            <th className="text-left text-purple-200 pb-2">Description</th>
-                            <th className="text-right text-purple-200 pb-2">Quantity</th>
-                            <th className="text-right text-purple-200 pb-2">Price</th>
-                            <th className="text-right text-purple-200 pb-2">Total</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {invoiceData.line_items.map((item, index) => (
-                            <tr key={index} className="border-b border-purple-400/10">
-                              <td className="text-white py-2">{item.description}</td>
-                              <td className="text-white py-2 text-right">{item.quantity}</td>
-                              <td className="text-white py-2 text-right">{item.unit_price}</td>
-                              <td className="text-white py-2 text-right">{item.total}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
                     </div>
                   </div>
                 )}
+                
+                {invoiceData.receiver && (
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border-2 border-green-200 shadow-lg">
+                    <h4 className="text-2xl font-bold text-green-800 mb-4 flex items-center">
+                      👤 Receiver
+                    </h4>
+                    <div className="space-y-2 text-gray-700">
+                      {invoiceData.receiver.name && (
+                        <p><span className="font-semibold">Name:</span> {invoiceData.receiver.name}</p>
+                      )}
+                      {invoiceData.receiver.tax_id && (
+                        <p><span className="font-semibold">Tax ID:</span> {invoiceData.receiver.tax_id}</p>
+                      )}
+                      {invoiceData.receiver.address && (
+                        <p><span className="font-semibold">Address:</span> {invoiceData.receiver.address}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+                
+                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 border-2 border-yellow-200 shadow-lg">
+                  <h4 className="text-2xl font-bold text-orange-800 mb-4 flex items-center">
+                    📋 Details
+                  </h4>
+                  <div className="space-y-2 text-gray-700">
+                    {invoiceData.invoice_number && (
+                      <p><span className="font-semibold">Number:</span> {invoiceData.invoice_number}</p>
+                    )}
+                    {invoiceData.date && (
+                      <p><span className="font-semibold">Date:</span> {invoiceData.date}</p>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border-2 border-pink-200 shadow-lg">
+                  <h4 className="text-2xl font-bold text-pink-800 mb-4 flex items-center">
+                    💰 Financial
+                  </h4>
+                  <div className="space-y-2 text-gray-700">
+                    {invoiceData.subtotal && (
+                      <p><span className="font-semibold">Subtotal:</span> {invoiceData.subtotal}</p>
+                    )}
+                    {invoiceData.tax && (
+                      <p><span className="font-semibold">Tax:</span> {invoiceData.tax}</p>
+                    )}
+                    {invoiceData.total && (
+                      <p className="text-2xl font-bold text-pink-600 mt-3 pt-3 border-t-2 border-pink-200">
+                        Total: {invoiceData.total}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
+              
+              {invoiceData.line_items && invoiceData.line_items.length > 0 && (
+                <div className="mt-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 border-2 border-indigo-200 shadow-lg">
+                  <h4 className="text-2xl font-bold text-indigo-800 mb-4">📦 Line Items</h4>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b-2 border-indigo-200">
+                          <th className="text-left text-indigo-700 pb-3 font-bold">Description</th>
+                          <th className="text-right text-indigo-700 pb-3 font-bold">Qty</th>
+                          <th className="text-right text-indigo-700 pb-3 font-bold">Price</th>
+                          <th className="text-right text-indigo-700 pb-3 font-bold">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {invoiceData.line_items.map((item, index) => (
+                          <tr key={index} className="border-b border-indigo-100">
+                            <td className="py-3 text-gray-700">{item.description}</td>
+                            <td className="py-3 text-right text-gray-700">{item.quantity}</td>
+                            <td className="py-3 text-right text-gray-700">{item.unit_price}</td>
+                            <td className="py-3 text-right font-semibold text-gray-900">{item.total}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Features Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-purple-400/20 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
-              <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '28px', maxHeight: '28px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Advanced OCR</h3>
-              <p className="text-purple-200">Tesseract-powered optical character recognition extracts text from PDFs with high accuracy</p>
-            </div>
-            
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-purple-400/20 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
-              <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '28px', maxHeight: '28px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">NLP Intelligence</h3>
-              <p className="text-purple-200">spaCy-powered natural language processing identifies entities and relationships automatically</p>
-            </div>
-            
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-purple-400/20 hover:border-purple-400/50 transition-all duration-300 hover:scale-105">
-              <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{maxWidth: '28px', maxHeight: '28px'}}>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Validation & Confidence</h3>
-              <p className="text-purple-200">Cross-validation of financial calculations with confidence scoring for quality assurance</p>
-            </div>
+        {/* Tarjetas de características con colores vibrantes */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-6xl mb-4">👁️</div>
+            <h3 className="text-2xl font-bold text-white mb-3">Advanced OCR</h3>
+            <p className="text-blue-50">Tesseract-powered optical character recognition extracts text from PDFs with exceptional accuracy</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-6xl mb-4">🧠</div>
+            <h3 className="text-2xl font-bold text-white mb-3">NLP Intelligence</h3>
+            <p className="text-purple-50">spaCy-powered natural language processing identifies entities and relationships automatically</p>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all">
+            <div className="text-6xl mb-4">✅</div>
+            <h3 className="text-2xl font-bold text-white mb-3">Smart Validation</h3>
+            <p className="text-green-50">Cross-validation of financial calculations with confidence scoring for quality assurance</p>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 px-6 py-8 border-t border-purple-400/20">
-        <div className="max-w-7xl mx-auto">
+      {/* Footer vibrante */}
+      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-4 md:mb-0">
-              <p className="text-purple-200 text-sm">
-                © 2025 Invoice AI Processor. Advanced document processing technology.
+              <p className="text-gray-300 font-semibold">
+                © 2025 Invoice AI Processor
               </p>
-              <p className="text-purple-300 text-xs mt-1">
-                Built with FastAPI, React, spaCy, and Tesseract OCR
+              <p className="text-gray-400 text-sm">
+                Built with FastAPI • React • spaCy • Tesseract OCR
               </p>
             </div>
-            <div className="flex items-center space-x-6">
-              <a href="https://invoice-ai-processor-production.up.railway.app/docs" target="_blank" rel="noopener noreferrer" className="text-purple-200 hover:text-white transition-colors text-sm">
+            <div className="flex space-x-4">
+              <a 
+                href="https://invoice-ai-processor-production.up.railway.app/docs" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 font-semibold"
+              >
                 API Documentation
               </a>
-              <a href="https://github.com/egtimer/-invoice-ai-processor" target="_blank" rel="noopener noreferrer" className="text-purple-200 hover:text-white transition-colors text-sm">
+              <a 
+                href="https://github.com/egtimer/-invoice-ai-processor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300 font-semibold"
+              >
                 View on GitHub
               </a>
             </div>
