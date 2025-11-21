@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { uploadInvoice, startProcessing, getProcessingStatus } from './services/api'
+import { useThemeContext } from './contexts/ThemeContext'
 
 function App() {
+  const { theme, toggleTheme } = useThemeContext()
   const [file, setFile] = useState(null)
   const [isDragging, setIsDragging] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -97,7 +99,16 @@ function App() {
                 <p className="text-blue-100">Intelligent Document Processing</p>
               </div>
             </div>
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-4">
+              {/* Theme toggle button */}
+              <button
+                onClick={toggleTheme}
+                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-lg backdrop-blur-sm flex items-center space-x-2"
+                title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              >
+                <span className="text-2xl">{theme === 'light' ? '🌙' : '☀️'}</span>
+                <span className="hidden sm:inline">{theme === 'light' ? 'Dark' : 'Light'}</span>
+              </button>
               <a 
                 href="https://invoice-ai-processor-production.up.railway.app/docs" 
                 target="_blank" 
@@ -123,13 +134,13 @@ function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero section */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-theme-primary mb-4 drop-shadow-lg">
             Extract Invoice Data
             <span className="block text-gradient mt-2">
               Instantly with AI
             </span>
           </h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+          <p className="text-xl text-theme-secondary max-w-3xl mx-auto">
             🚀 Powered by advanced OCR and NLP • ⚡ Fast and accurate • 🎯 Enterprise-grade quality
           </p>
         </div>
@@ -162,10 +173,10 @@ function App() {
                   {isProcessing ? '⏳' : isDragging ? '📥' : '☁️'}
                 </div>
                 
-                <h3 className="text-3xl font-bold text-white mb-3">
+                <h3 className="text-3xl font-bold text-theme-primary mb-3">
                   {isProcessing ? '🔄 Processing Your Invoice...' : isDragging ? '📥 Drop it here!' : '📄 Upload Your Invoice'}
                 </h3>
-                <p className="text-xl text-blue-100 mb-6">
+                <p className="text-xl text-theme-secondary mb-6">
                   {isDragging ? 'Release to upload!' : 'Drag & drop your PDF or click to browse'}
                 </p>
                 
@@ -177,13 +188,13 @@ function App() {
                 
                 {isProcessing && (
                   <div className="mt-8">
-                    <div className="bg-gray-700 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
+                    <div className="bg-gray-300 dark:bg-gray-700 rounded-full h-4 mb-3 overflow-hidden shadow-inner">
                       <div 
                         className="progress-bar h-full transition-all duration-500 ease-out shadow-lg"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
                     </div>
-                    <p className="text-white font-semibold text-lg">⏳ Processing... {uploadProgress}%</p>
+                    <p className="text-theme-primary font-semibold text-lg">⏳ Processing... {uploadProgress}%</p>
                   </div>
                 )}
                 
@@ -193,7 +204,7 @@ function App() {
                   </div>
                 )}
                 
-                <p className="text-blue-200 mt-6 text-lg">
+                <p className="text-theme-light mt-6 text-lg">
                   📊 Maximum: 10MB • 📑 Format: PDF only
                 </p>
               </div>
@@ -201,7 +212,7 @@ function App() {
           </div>
         ) : (
           <div className="max-w-5xl mx-auto mb-12">
-            <div className="bg-white rounded-3xl p-8 shadow-2xl">
+            <div className="results-card rounded-3xl p-8 shadow-2xl">
               <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
                 <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
                   ✅ Extraction Complete!
@@ -217,10 +228,10 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {invoiceData.issuer && (
                   <div className="card-blue rounded-2xl p-6 shadow-lg">
-                    <h4 className="text-2xl font-bold text-blue-800 mb-4">
+                    <h4 className="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-4">
                       🏢 Issuer Information
                     </h4>
-                    <div className="space-y-2 text-gray-700">
+                    <div className="space-y-2 text-gray-700 dark:text-gray-200">
                       {invoiceData.issuer.name && (
                         <p><span className="font-semibold">Name:</span> {invoiceData.issuer.name}</p>
                       )}
@@ -236,10 +247,10 @@ function App() {
                 
                 {invoiceData.receiver && (
                   <div className="card-green rounded-2xl p-6 shadow-lg">
-                    <h4 className="text-2xl font-bold text-green-800 mb-4">
+                    <h4 className="text-2xl font-bold text-green-800 dark:text-green-300 mb-4">
                       👤 Receiver Information
                     </h4>
-                    <div className="space-y-2 text-gray-700">
+                    <div className="space-y-2 text-gray-700 dark:text-gray-200">
                       {invoiceData.receiver.name && (
                         <p><span className="font-semibold">Name:</span> {invoiceData.receiver.name}</p>
                       )}
@@ -254,10 +265,10 @@ function App() {
                 )}
                 
                 <div className="card-yellow rounded-2xl p-6 shadow-lg">
-                  <h4 className="text-2xl font-bold text-orange-800 mb-4">
+                  <h4 className="text-2xl font-bold text-orange-800 dark:text-orange-300 mb-4">
                     📋 Invoice Details
                   </h4>
-                  <div className="space-y-2 text-gray-700">
+                  <div className="space-y-2 text-gray-700 dark:text-gray-200">
                     {invoiceData.invoice_number && (
                       <p><span className="font-semibold">Number:</span> {invoiceData.invoice_number}</p>
                     )}
@@ -268,10 +279,10 @@ function App() {
                 </div>
                 
                 <div className="card-pink rounded-2xl p-6 shadow-lg">
-                  <h4 className="text-2xl font-bold text-pink-800 mb-4">
+                  <h4 className="text-2xl font-bold text-pink-800 dark:text-pink-300 mb-4">
                     💰 Financial Summary
                   </h4>
-                  <div className="space-y-2 text-gray-700">
+                  <div className="space-y-2 text-gray-700 dark:text-gray-200">
                     {invoiceData.subtotal && (
                       <p><span className="font-semibold">Subtotal:</span> {invoiceData.subtotal}</p>
                     )}
@@ -279,7 +290,7 @@ function App() {
                       <p><span className="font-semibold">Tax:</span> {invoiceData.tax}</p>
                     )}
                     {invoiceData.total && (
-                      <p className="text-2xl font-bold text-pink-600 mt-3 pt-3 border-t-2 border-pink-200">
+                      <p className="text-2xl font-bold text-pink-600 dark:text-pink-400 mt-3 pt-3 border-t-2 border-pink-200 dark:border-pink-700">
                         Total: {invoiceData.total}
                       </p>
                     )}
@@ -289,24 +300,24 @@ function App() {
               
               {invoiceData.line_items && invoiceData.line_items.length > 0 && (
                 <div className="mt-6 card-indigo rounded-2xl p-6 shadow-lg">
-                  <h4 className="text-2xl font-bold text-indigo-800 mb-4">📦 Line Items</h4>
+                  <h4 className="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">📦 Line Items</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
-                        <tr className="border-b-2 border-indigo-200">
-                          <th className="text-left text-indigo-700 pb-3 font-bold">Description</th>
-                          <th className="text-right text-indigo-700 pb-3 font-bold">Qty</th>
-                          <th className="text-right text-indigo-700 pb-3 font-bold">Price</th>
-                          <th className="text-right text-indigo-700 pb-3 font-bold">Total</th>
+                        <tr className="border-b-2 border-indigo-200 dark:border-indigo-700">
+                          <th className="text-left text-indigo-700 dark:text-indigo-300 pb-3 font-bold">Description</th>
+                          <th className="text-right text-indigo-700 dark:text-indigo-300 pb-3 font-bold">Qty</th>
+                          <th className="text-right text-indigo-700 dark:text-indigo-300 pb-3 font-bold">Price</th>
+                          <th className="text-right text-indigo-700 dark:text-indigo-300 pb-3 font-bold">Total</th>
                         </tr>
                       </thead>
                       <tbody>
                         {invoiceData.line_items.map((item, index) => (
-                          <tr key={index} className="border-b border-indigo-100">
-                            <td className="py-3 text-gray-700">{item.description}</td>
-                            <td className="py-3 text-right text-gray-700">{item.quantity}</td>
-                            <td className="py-3 text-right text-gray-700">{item.unit_price}</td>
-                            <td className="py-3 text-right font-semibold text-gray-900">{item.total}</td>
+                          <tr key={index} className="border-b border-indigo-100 dark:border-indigo-800">
+                            <td className="py-3 text-gray-700 dark:text-gray-200">{item.description}</td>
+                            <td className="py-3 text-right text-gray-700 dark:text-gray-200">{item.quantity}</td>
+                            <td className="py-3 text-right text-gray-700 dark:text-gray-200">{item.unit_price}</td>
+                            <td className="py-3 text-right font-semibold text-gray-900 dark:text-gray-100">{item.total}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -341,14 +352,14 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 mt-16">
+      <footer className="bg-gray-100 dark:bg-gray-900 mt-16 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
-              <p className="text-gray-300 font-semibold text-lg">
+              <p className="text-gray-800 dark:text-gray-300 font-semibold text-lg">
                 © 2025 Invoice AI Processor
               </p>
-              <p className="text-gray-400">
+              <p className="text-gray-600 dark:text-gray-400">
                 Built with FastAPI • React • spaCy • Tesseract OCR
               </p>
             </div>
@@ -357,7 +368,7 @@ function App() {
                 href="https://invoice-ai-processor-production.up.railway.app/docs" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 font-semibold transition-colors"
               >
                 📚 API Documentation
               </a>
@@ -365,7 +376,7 @@ function App() {
                 href="https://github.com/egtimer/-invoice-ai-processor" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-purple-400 hover:text-purple-300 font-semibold transition-colors"
+                className="text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 font-semibold transition-colors"
               >
                 💻 View on GitHub
               </a>
