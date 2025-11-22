@@ -98,8 +98,8 @@ function App() {
           <div className="flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                isDark ? 'bg-[#1a1a24] text-white' : 'bg-gray-100 text-gray-600'
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
+                isDark ? 'bg-[#1a1a24] text-white hover:bg-[#1f1f2a]' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
               title="Toggle theme"
             >
@@ -108,8 +108,8 @@ function App() {
               </svg>
             </button>
             <button
-              className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                isDark ? 'bg-[#1a1a24] text-white' : 'bg-gray-100 text-gray-600'
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
+                isDark ? 'bg-[#1a1a24] text-white hover:bg-[#1f1f2a]' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,23 +133,23 @@ function App() {
           
           {/* Pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-              isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
-            }`}>
-              <div className={`px-2 py-0.5 rounded ${isDark ? 'bg-[#2a2a36]' : 'bg-gray-200'}`}>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+              isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
+            } hover:scale-105`}>
+              <div className={`px-2 py-0.5 rounded transition-colors ${isDark ? 'bg-[#2a2a36]' : 'bg-gray-200'}`}>
                 <span className={`text-xs font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
               </div>
               <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</span>
             </div>
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-              isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
-            }`}>
-              <span className="text-yellow-400 text-lg">⚡</span>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+              isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
+            } hover:scale-105`}>
+              <span className="text-yellow-400 text-lg animate-pulse">⚡</span>
               <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Smart extraction</span>
             </div>
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-              isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
-            }`}>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+              isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
+            } hover:scale-105`}>
               <span className="text-blue-400 text-lg">✨</span>
               <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Export to JSON/CSV</span>
             </div>
@@ -163,10 +163,10 @@ function App() {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative rounded-2xl p-12 border-2 border-dashed transition-all ${
+              className={`relative rounded-2xl p-12 border-2 border-dashed transition-all duration-300 ${
                 isDragging
-                  ? 'border-blue-500 scale-[1.02]'
-                  : isDark ? 'border-[#2a2a36] bg-[#16161e]' : 'border-gray-300 bg-gray-50'
+                  ? 'border-blue-500 bg-blue-500/5 scale-[1.02] shadow-lg shadow-blue-500/20'
+                  : isDark ? 'border-[#2a2a36] bg-[#16161e] hover:border-[#3a3a46]' : 'border-gray-300 bg-gray-50 hover:border-gray-400'
               }`}
             >
               <input
@@ -177,13 +177,21 @@ function App() {
                 disabled={isProcessing}
               />
               <div className="text-center">
-                <div className={`mx-auto w-14 h-14 rounded-xl flex items-center justify-center mb-6 border ${
-                  isDark ? 'border-[#2a2a36] bg-[#1a1a24]' : 'border-gray-200 bg-white'
-                }`}>
+                <div className={`mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all ${
+                  isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
+                } ${!isProcessing && 'hover:scale-110'}`}>
                   {isProcessing ? (
-                    <span className="animate-spin text-2xl">⏳</span>
+                    <div className="relative">
+                      <div className="animate-spin">
+                        <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                      </div>
+                    </div>
                   ) : (
-                    <span className={`text-2xl ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`}>↓</span>
+                    <svg className={`w-8 h-8 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3 3m0 0l-3-3m3 3V8" />
+                    </svg>
                   )}
                 </div>
                 <h3 className={`text-xl font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -242,7 +250,7 @@ function App() {
                 </div>
                 <button
                   onClick={resetApp}
-                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium"
+                  className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all hover:scale-105 active:scale-95"
                 >
                   Process Another
                 </button>
@@ -306,9 +314,11 @@ function App() {
 
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className={`p-6 rounded-2xl ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-50'}`}>
+          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+            isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
+          } hover:scale-105 hover:shadow-lg`}>
             <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
                 <span className={`font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
               </div>
               <div>
@@ -318,9 +328,11 @@ function App() {
             </div>
           </div>
 
-          <div className={`p-6 rounded-2xl ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-50'}`}>
+          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+            isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
+          } hover:scale-105 hover:shadow-lg`}>
             <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
                 <span className="text-2xl">🎯</span>
               </div>
               <div>
@@ -330,9 +342,11 @@ function App() {
             </div>
           </div>
 
-          <div className={`p-6 rounded-2xl ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-50'}`}>
+          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+            isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
+          } hover:scale-105 hover:shadow-lg`}>
             <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
                 <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
