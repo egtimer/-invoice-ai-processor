@@ -132,7 +132,7 @@ function App() {
           </p>
           
           {/* Pills */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-6 mb-12">
             <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
@@ -309,7 +309,7 @@ function App() {
           } hover:shadow-xl`}>
             <div className="flex flex-col items-center text-center gap-3">
               <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
-                <span className={`font-bold text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
+                <span style={{fontSize: '24px'}}>👁️</span>
               </div>
               <div>
                 <h3 className={`font-semibold mb-2 text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</h3>
