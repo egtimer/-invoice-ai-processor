@@ -95,11 +95,10 @@ function App() {
           </div>
           <div className="flex items-center gap-3">
             <button
-              onClick={toggleTheme}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
                 isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
               }`}
-              title="Toggle theme"
+              title="User profile"
             >
               <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
@@ -109,9 +108,10 @@ function App() {
               className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
                 isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
               }`}
+              title="Menu"
             >
-              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
           </div>
