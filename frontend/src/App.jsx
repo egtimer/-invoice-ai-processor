@@ -86,86 +86,131 @@ function App() {
     setUploadProgress(0)
   }
 
+  // Dynamic styles based on theme
+  const styles = {
+    bg: theme === 'dark' ? 'bg-[#0a0a0f]' : 'bg-white',
+    bgSecondary: theme === 'dark' ? 'bg-[#12121a]' : 'bg-gray-50',
+    bgCard: theme === 'dark' ? 'bg-[#1a1a24]' : 'bg-white',
+    bgCardHover: theme === 'dark' ? 'hover:bg-[#22222e]' : 'hover:bg-gray-50',
+    bgInput: theme === 'dark' ? 'bg-[#16161e]' : 'bg-gray-50',
+    textPrimary: theme === 'dark' ? 'text-white' : 'text-gray-900',
+    textSecondary: theme === 'dark' ? 'text-[#a0a0a8]' : 'text-gray-600',
+    textMuted: theme === 'dark' ? 'text-[#6b6b74]' : 'text-gray-400',
+    border: theme === 'dark' ? 'border-[#2a2a36]' : 'border-gray-200',
+    borderLight: theme === 'dark' ? 'border-[#3a3a46]' : 'border-gray-300',
+  }
+
   return (
-    <div className="bg-app">
-      {/* Header mejorado con botones siempre visibles */}
-      <header className="bg-header shadow-2xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between gap-4">
-            {/* Logo y título */}
-            <div className="flex items-center space-x-3">
-              <div className="text-4xl sm:text-5xl">📄</div>
-              <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-white">Invoice AI Processor</h1>
-                <p className="text-blue-100 text-xs sm:text-sm">Intelligent Document Processing</p>
+    <div className={`min-h-screen ${styles.bg} transition-colors duration-300`}>
+      {/* Header - Minimal and clean */}
+      <header className={`${styles.bg} border-b ${styles.border} transition-colors duration-300`}>
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className={`w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-blue-600' : 'bg-blue-500'} flex items-center justify-center`}>
+                <span className="text-white text-xs font-bold">AI</span>
               </div>
+              <span className={`text-lg font-semibold ${styles.textPrimary}`}>Invoice AI Processor</span>
             </div>
 
-            {/* Botones de navegación y tema - siempre visibles con texto */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Botón de cambio de tema - siempre con texto visible */}
+            {/* Right side - Theme toggle and menu */}
+            <div className="flex items-center gap-4">
+              {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="theme-toggle px-3 py-2 rounded-lg font-medium text-white flex items-center gap-2 shadow-lg text-sm"
-                aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                className={`p-2 rounded-lg ${styles.bgCard} ${styles.border} border ${styles.bgCardHover} transition-all`}
                 title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
               >
-                <span className="text-xl">{theme === 'light' ? '🌙' : '☀️'}</span>
-                <span>{theme === 'light' ? 'Dark' : 'Light'}</span>
+                {theme === 'light' ? (
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
               </button>
 
-              {/* Botón API Docs - siempre visible */}
-              <a 
-                href="https://invoice-ai-processor-production.up.railway.app/docs" 
-                target="_blank" 
+              {/* API Docs Link */}
+              <a
+                href="https://invoice-ai-processor-production.up.railway.app/docs"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-purple-600 px-3 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg text-sm flex items-center gap-1"
+                className={`p-2 rounded-lg ${styles.bgCard} ${styles.border} border ${styles.bgCardHover} transition-all`}
+                title="API Documentation"
               >
-                <span>📚</span>
-                <span>API</span>
+                <svg className={`w-5 h-5 ${styles.textSecondary}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
               </a>
 
-              {/* Botón GitHub - siempre visible */}
-              <a 
-                href="https://github.com/egtimer/-invoice-ai-processor" 
-                target="_blank" 
+              {/* GitHub Link */}
+              <a
+                href="https://github.com/egtimer/-invoice-ai-processor"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gray-900 text-white px-3 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-all shadow-lg text-sm flex items-center gap-1"
+                className={`p-2 rounded-lg ${styles.bgCard} ${styles.border} border ${styles.bgCardHover} transition-all`}
+                title="View on GitHub"
               >
-                <span>💻</span>
-                <span>Code</span>
+                <svg className={`w-5 h-5 ${styles.textSecondary}`} fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
               </a>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Contenido principal */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero section con colores que se adaptan al tema */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-primary mb-4">
-            Extract Invoice Data
-            <span className="block text-gradient mt-2">
-              Instantly with AI
-            </span>
-          </h2>
-          <p className="text-lg sm:text-xl text-secondary max-w-3xl mx-auto leading-relaxed">
-            🚀 Powered by advanced OCR and NLP • ⚡ Fast and accurate • 🎯 Enterprise-grade quality
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-6 py-16">
+        {/* Hero Section */}
+        <div className="text-center mb-12">
+          <h1 className={`text-4xl sm:text-5xl md:text-6xl font-bold ${styles.textPrimary} mb-6 leading-tight`}>
+            Extract invoice data
+            <br />
+            in seconds
+          </h1>
+          <p className={`text-lg ${styles.textSecondary} max-w-xl mx-auto mb-8`}>
+            Process your invoices with AI to quickly extract key information
           </p>
+
+          {/* Feature Pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${styles.bgCard} border ${styles.border}`}>
+              <svg className={`w-4 h-4 ${styles.textSecondary}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              <span className={`text-sm font-medium ${styles.textPrimary}`}>Advanced OCR</span>
+            </div>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${styles.bgCard} border ${styles.border}`}>
+              <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              <span className={`text-sm font-medium ${styles.textPrimary}`}>Smart extraction</span>
+            </div>
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${styles.bgCard} border ${styles.border}`}>
+              <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              <span className={`text-sm font-medium ${styles.textPrimary}`}>Export to JSON/CSV</span>
+            </div>
+          </div>
         </div>
 
-        {/* Área de upload con emoji grande y colores que cambian con el tema */}
+        {/* Upload Area */}
         {!invoiceData ? (
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="max-w-2xl mx-auto mb-16">
             <div
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`relative rounded-2xl p-12 sm:p-16 border-4 border-dashed transition-all duration-300 ${
+              className={`relative rounded-2xl p-12 border-2 border-dashed transition-all duration-300 ${
                 isDragging
-                  ? 'bg-upload-drag scale-105 shadow-2xl'
-                  : 'bg-upload hover:scale-102 shadow-xl'
+                  ? `${styles.bgCard} border-blue-500 scale-[1.02]`
+                  : `${styles.bgInput} ${styles.border} hover:border-blue-500/50`
               }`}
             >
               <input
@@ -177,183 +222,196 @@ function App() {
               />
               
               <div className="text-center">
-                {/* Emoji grande que cambia según el estado */}
-                <div className={`text-8xl sm:text-9xl mb-6 sm:mb-8 transition-transform duration-300 ${
-                  isDragging ? 'scale-110' : 'hover:scale-105'
-                }`}>
-                  {isProcessing ? '⏳' : isDragging ? '📥' : '☁️'}
+                {/* Upload Icon */}
+                <div className={`mx-auto w-12 h-12 rounded-xl ${styles.bgCard} border ${styles.border} flex items-center justify-center mb-6`}>
+                  {isProcessing ? (
+                    <svg className={`w-6 h-6 ${styles.textSecondary} animate-spin`} fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  ) : (
+                    <svg className={`w-6 h-6 ${styles.textSecondary}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  )}
                 </div>
                 
-                {/* Título con color que se adapta al tema */}
-                <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-3">
-                  {isProcessing ? '🔄 Processing Your Invoice...' : 
-                   isDragging ? '📥 Drop it here!' : 
-                   '📄 Upload Your Invoice'}
+                <h3 className={`text-xl font-semibold ${styles.textPrimary} mb-2`}>
+                  {isProcessing ? 'Processing...' : 'Upload your PDF'}
                 </h3>
-                
-                {/* Texto instructivo con color que se adapta */}
-                <p className="text-base sm:text-lg text-secondary mb-6">
-                  {isDragging ? 'Release to upload!' : 'Drag & drop your PDF or click to browse'}
+                <p className={`${styles.textSecondary} mb-2`}>
+                  {isDragging ? 'Release to upload' : 'Drag and drop or click to upload'}
+                </p>
+                <p className={`text-sm ${styles.textMuted}`}>
+                  PDF up to 10 MB
                 </p>
                 
-                {/* Indicador de archivo seleccionado */}
+                {/* File selected indicator */}
                 {file && !isProcessing && (
-                  <div className="bg-green-500 rounded-xl p-4 mb-6 inline-block shadow-lg">
-                    <p className="text-white font-bold text-base sm:text-lg">✅ {file.name}</p>
+                  <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/20">
+                    <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-green-400 text-sm font-medium">{file.name}</span>
                   </div>
                 )}
                 
-                {/* Barra de progreso durante procesamiento */}
+                {/* Progress bar */}
                 {isProcessing && (
-                  <div className="mt-8">
-                    <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-3 mb-3 overflow-hidden shadow-inner">
+                  <div className="mt-6">
+                    <div className={`h-1.5 rounded-full ${styles.bgCard} overflow-hidden`}>
                       <div 
-                        className="progress-bar h-full transition-all duration-500 ease-out"
+                        className="h-full bg-blue-500 transition-all duration-500 ease-out rounded-full"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
                     </div>
-                    <p className="text-primary font-semibold text-base">
-                      ⏳ Processing... {uploadProgress}%
-                    </p>
+                    <p className={`mt-2 text-sm ${styles.textSecondary}`}>Processing... {uploadProgress}%</p>
                   </div>
                 )}
                 
-                {/* Mensaje de error */}
+                {/* Error message */}
                 {error && (
-                  <div className="bg-red-500 rounded-xl p-4 mt-6 shadow-lg">
-                    <p className="text-white font-bold text-sm sm:text-base">❌ {error}</p>
+                  <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20">
+                    <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span className="text-red-400 text-sm">{error}</span>
                   </div>
                 )}
-                
-                {/* Requisitos del archivo con color adaptable */}
-                <p className="text-light mt-6 text-sm">
-                  📊 Maximum: 10MB • 📑 Format: PDF only
-                </p>
               </div>
             </div>
           </div>
         ) : (
-          <div className="max-w-5xl mx-auto mb-16">
-            <div className="result-card rounded-2xl p-6 sm:p-8 shadow-2xl">
-              {/* Encabezado de resultados */}
-              <div className="flex flex-col sm:flex-row items-center justify-between mb-8 gap-4">
-                <h3 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-                  ✅ Extraction Complete!
-                </h3>
+          /* Results Section */
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className={`${styles.bgCard} rounded-2xl p-8 border ${styles.border}`}>
+              {/* Results Header */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#2a2a36] dark:border-[#2a2a36]">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className={`text-xl font-semibold ${styles.textPrimary}`}>Extraction Complete</h3>
+                    <p className={`text-sm ${styles.textSecondary}`}>Invoice data extracted successfully</p>
+                  </div>
+                </div>
                 <button
                   onClick={resetApp}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:shadow-xl transition-all transform hover:scale-105 w-full sm:w-auto"
+                  className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
                 >
-                  🔄 Process Another
+                  Process Another
                 </button>
               </div>
               
-              {/* Grid de tarjetas de información */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {/* Tarjeta de información del emisor */}
+              {/* Data Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Issuer */}
                 {invoiceData.issuer && (
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800 shadow-md">
-                    <h4 className="text-xl sm:text-2xl font-bold text-blue-900 dark:text-blue-100 mb-4 flex items-center gap-2">
-                      <span>🏢</span>
-                      <span>Issuer Information</span>
-                    </h4>
-                    <div className="space-y-3 text-sm sm:text-base text-gray-700 dark:text-gray-200">
-                      {invoiceData.issuer.name && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Name:</span> {invoiceData.issuer.name}</p>
-                      )}
-                      {invoiceData.issuer.tax_id && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Tax ID:</span> {invoiceData.issuer.tax_id}</p>
-                      )}
-                      {invoiceData.issuer.address && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Address:</span> {invoiceData.issuer.address}</p>
-                      )}
+                  <div className={`p-5 rounded-xl ${styles.bgInput} border ${styles.border}`}>
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <h4 className={`font-semibold ${styles.textPrimary}`}>Issuer</h4>
+                    </div>
+                    <div className="space-y-2">
+                      {invoiceData.issuer.name && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Name:</span> {invoiceData.issuer.name}</p>}
+                      {invoiceData.issuer.tax_id && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Tax ID:</span> {invoiceData.issuer.tax_id}</p>}
+                      {invoiceData.issuer.address && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Address:</span> {invoiceData.issuer.address}</p>}
                     </div>
                   </div>
                 )}
                 
-                {/* Tarjeta de información del receptor */}
+                {/* Receiver */}
                 {invoiceData.receiver && (
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-6 border border-green-200 dark:border-green-800 shadow-md">
-                    <h4 className="text-xl sm:text-2xl font-bold text-green-900 dark:text-green-100 mb-4 flex items-center gap-2">
-                      <span>👤</span>
-                      <span>Receiver Information</span>
-                    </h4>
-                    <div className="space-y-3 text-sm sm:text-base text-gray-700 dark:text-gray-200">
-                      {invoiceData.receiver.name && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Name:</span> {invoiceData.receiver.name}</p>
-                      )}
-                      {invoiceData.receiver.tax_id && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Tax ID:</span> {invoiceData.receiver.tax_id}</p>
-                      )}
-                      {invoiceData.receiver.address && (
-                        <p><span className="font-semibold text-gray-900 dark:text-white">Address:</span> {invoiceData.receiver.address}</p>
-                      )}
+                  <div className={`p-5 rounded-xl ${styles.bgInput} border ${styles.border}`}>
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <h4 className={`font-semibold ${styles.textPrimary}`}>Receiver</h4>
+                    </div>
+                    <div className="space-y-2">
+                      {invoiceData.receiver.name && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Name:</span> {invoiceData.receiver.name}</p>}
+                      {invoiceData.receiver.tax_id && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Tax ID:</span> {invoiceData.receiver.tax_id}</p>}
+                      {invoiceData.receiver.address && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Address:</span> {invoiceData.receiver.address}</p>}
                     </div>
                   </div>
                 )}
                 
-                {/* Tarjeta de detalles de la factura */}
-                <div className="bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-xl p-6 border border-yellow-200 dark:border-yellow-800 shadow-md">
-                  <h4 className="text-xl sm:text-2xl font-bold text-yellow-900 dark:text-yellow-100 mb-4 flex items-center gap-2">
-                    <span>📋</span>
-                    <span>Invoice Details</span>
-                  </h4>
-                  <div className="space-y-3 text-sm sm:text-base text-gray-700 dark:text-gray-200">
-                    {invoiceData.invoice_number && (
-                      <p><span className="font-semibold text-gray-900 dark:text-white">Number:</span> {invoiceData.invoice_number}</p>
-                    )}
-                    {invoiceData.date && (
-                      <p><span className="font-semibold text-gray-900 dark:text-white">Date:</span> {invoiceData.date}</p>
-                    )}
+                {/* Invoice Details */}
+                <div className={`p-5 rounded-xl ${styles.bgInput} border ${styles.border}`}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-yellow-500/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <h4 className={`font-semibold ${styles.textPrimary}`}>Invoice Details</h4>
+                  </div>
+                  <div className="space-y-2">
+                    {invoiceData.invoice_number && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Number:</span> {invoiceData.invoice_number}</p>}
+                    {invoiceData.date && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Date:</span> {invoiceData.date}</p>}
                   </div>
                 </div>
                 
-                {/* Tarjeta de resumen financiero */}
-                <div className="bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-xl p-6 border border-pink-200 dark:border-pink-800 shadow-md">
-                  <h4 className="text-xl sm:text-2xl font-bold text-pink-900 dark:text-pink-100 mb-4 flex items-center gap-2">
-                    <span>💰</span>
-                    <span>Financial Summary</span>
-                  </h4>
-                  <div className="space-y-3 text-sm sm:text-base text-gray-700 dark:text-gray-200">
-                    {invoiceData.subtotal && (
-                      <p><span className="font-semibold text-gray-900 dark:text-white">Subtotal:</span> {invoiceData.subtotal}</p>
-                    )}
-                    {invoiceData.tax && (
-                      <p><span className="font-semibold text-gray-900 dark:text-white">Tax:</span> {invoiceData.tax}</p>
-                    )}
+                {/* Financial Summary */}
+                <div className={`p-5 rounded-xl ${styles.bgInput} border ${styles.border}`}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h4 className={`font-semibold ${styles.textPrimary}`}>Financial Summary</h4>
+                  </div>
+                  <div className="space-y-2">
+                    {invoiceData.subtotal && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Subtotal:</span> {invoiceData.subtotal}</p>}
+                    {invoiceData.tax && <p className={`text-sm ${styles.textSecondary}`}><span className={styles.textMuted}>Tax:</span> {invoiceData.tax}</p>}
                     {invoiceData.total && (
-                      <p className="text-xl sm:text-2xl font-bold text-pink-700 dark:text-pink-300 mt-4 pt-4 border-t-2 border-pink-200 dark:border-pink-700">
-                        <span className="font-semibold">Total:</span> {invoiceData.total}
+                      <p className={`text-lg font-semibold ${styles.textPrimary} pt-2 mt-2 border-t ${styles.border}`}>
+                        Total: {invoiceData.total}
                       </p>
                     )}
                   </div>
                 </div>
               </div>
               
-              {/* Tabla de artículos de línea */}
+              {/* Line Items */}
               {invoiceData.line_items && invoiceData.line_items.length > 0 && (
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-indigo-200 dark:border-indigo-800 shadow-md">
-                  <h4 className="text-xl sm:text-2xl font-bold text-indigo-900 dark:text-indigo-100 mb-4 flex items-center gap-2">
-                    <span>📦</span>
-                    <span>Line Items</span>
-                  </h4>
+                <div className={`mt-6 p-5 rounded-xl ${styles.bgInput} border ${styles.border}`}>
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                      </svg>
+                    </div>
+                    <h4 className={`font-semibold ${styles.textPrimary}`}>Line Items</h4>
+                  </div>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-sm sm:text-base">
+                    <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b-2 border-indigo-200 dark:border-indigo-700">
-                          <th className="text-left text-indigo-900 dark:text-indigo-100 pb-3 font-bold">Description</th>
-                          <th className="text-right text-indigo-900 dark:text-indigo-100 pb-3 font-bold">Qty</th>
-                          <th className="text-right text-indigo-900 dark:text-indigo-100 pb-3 font-bold">Price</th>
-                          <th className="text-right text-indigo-900 dark:text-indigo-100 pb-3 font-bold">Total</th>
+                        <tr className={`border-b ${styles.border}`}>
+                          <th className={`text-left pb-3 font-medium ${styles.textMuted}`}>Description</th>
+                          <th className={`text-right pb-3 font-medium ${styles.textMuted}`}>Qty</th>
+                          <th className={`text-right pb-3 font-medium ${styles.textMuted}`}>Price</th>
+                          <th className={`text-right pb-3 font-medium ${styles.textMuted}`}>Total</th>
                         </tr>
                       </thead>
                       <tbody>
                         {invoiceData.line_items.map((item, index) => (
-                          <tr key={index} className="border-b border-indigo-100 dark:border-indigo-800">
-                            <td className="py-3 text-gray-700 dark:text-gray-200">{item.description}</td>
-                            <td className="py-3 text-right text-gray-700 dark:text-gray-200">{item.quantity}</td>
-                            <td className="py-3 text-right text-gray-700 dark:text-gray-200">{item.unit_price}</td>
-                            <td className="py-3 text-right font-semibold text-gray-900 dark:text-gray-100">{item.total}</td>
+                          <tr key={index} className={`border-b ${styles.border} last:border-0`}>
+                            <td className={`py-3 ${styles.textSecondary}`}>{item.description}</td>
+                            <td className={`py-3 text-right ${styles.textSecondary}`}>{item.quantity}</td>
+                            <td className={`py-3 text-right ${styles.textSecondary}`}>{item.unit_price}</td>
+                            <td className={`py-3 text-right font-medium ${styles.textPrimary}`}>{item.total}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -365,62 +423,73 @@ function App() {
           </div>
         )}
 
-        {/* Tarjetas de características - mantienen gradientes vibrantes en ambos temas */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-16">
-          <div className="feature-card-blue rounded-3xl p-6 sm:p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <div className="text-6xl sm:text-7xl mb-4">👁️</div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Advanced OCR</h3>
-            <p className="text-blue-50 text-sm sm:text-base leading-relaxed">
-              Tesseract-powered optical character recognition extracts text from PDFs with exceptional accuracy
-            </p>
+        {/* Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          <div className={`p-6 rounded-2xl ${styles.bgCard} border ${styles.border}`}>
+            <div className="flex items-start gap-4">
+              <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${styles.bgInput} flex items-center justify-center`}>
+                <span className={`text-sm font-bold ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`}>OCR</span>
+              </div>
+              <div>
+                <h3 className={`font-semibold ${styles.textPrimary} mb-1`}>Advanced OCR</h3>
+                <p className={`text-sm ${styles.textSecondary}`}>Accurate text extraction from invoices</p>
+              </div>
+            </div>
           </div>
           
-          <div className="feature-card-purple rounded-3xl p-6 sm:p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <div className="text-6xl sm:text-7xl mb-4">🧠</div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">NLP Intelligence</h3>
-            <p className="text-purple-50 text-sm sm:text-base leading-relaxed">
-              spaCy-powered natural language processing identifies entities and relationships automatically
-            </p>
+          <div className={`p-6 rounded-2xl ${styles.bgCard} border ${styles.border}`}>
+            <div className="flex items-start gap-4">
+              <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${styles.bgInput} flex items-center justify-center`}>
+                <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-purple-400' : 'text-purple-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+              </div>
+              <div>
+                <h3 className={`font-semibold ${styles.textPrimary} mb-1`}>Smart Field Extraction</h3>
+                <p className={`text-sm ${styles.textSecondary}`}>Capture invoice fields such as date and total</p>
+              </div>
+            </div>
           </div>
           
-          <div className="feature-card-green rounded-3xl p-6 sm:p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
-            <div className="text-6xl sm:text-7xl mb-4">✅</div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Smart Validation</h3>
-            <p className="text-green-50 text-sm sm:text-base leading-relaxed">
-              Cross-validation of financial calculations with confidence scoring for quality assurance
-            </p>
+          <div className={`p-6 rounded-2xl ${styles.bgCard} border ${styles.border}`}>
+            <div className="flex items-start gap-4">
+              <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${styles.bgInput} flex items-center justify-center`}>
+                <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-green-400' : 'text-green-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </div>
+              <div>
+                <h3 className={`font-semibold ${styles.textPrimary} mb-1`}>Export in Multiple Formats</h3>
+                <p className={`text-sm ${styles.textSecondary}`}>Download extracted data as JSON or CSV</p>
+              </div>
+            </div>
           </div>
         </div>
       </main>
 
-      {/* Footer profesional */}
-      <footer className="bg-gray-50 dark:bg-gray-900/50 mt-20 border-t border-gray-200 dark:border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Footer */}
+      <footer className={`border-t ${styles.border} mt-20`}>
+        <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-center md:text-left">
-              <p className="text-gray-900 dark:text-gray-100 font-semibold text-sm sm:text-base">
-                © 2025 Invoice AI Processor
-              </p>
-              <p className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm mt-1">
-                Built with FastAPI • React • spaCy • Tesseract OCR
-              </p>
-            </div>
-            <div className="flex gap-4 sm:gap-6">
+            <p className={`text-sm ${styles.textMuted}`}>
+              © 2025 Invoice AI Processor. Built with FastAPI, React, spaCy & Tesseract OCR.
+            </p>
+            <div className="flex items-center gap-6">
               <a 
                 href="https://invoice-ai-processor-production.up.railway.app/docs" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors text-sm"
+                className={`text-sm ${styles.textSecondary} hover:${styles.textPrimary} transition-colors`}
               >
-                📚 API Documentation
+                API Docs
               </a>
               <a 
                 href="https://github.com/egtimer/-invoice-ai-processor" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium transition-colors text-sm"
+                className={`text-sm ${styles.textSecondary} hover:${styles.textPrimary} transition-colors`}
               >
-                💻 View on GitHub
+                GitHub
               </a>
             </div>
           </div>
