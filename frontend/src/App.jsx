@@ -101,8 +101,8 @@ function App() {
               }`}
               title="Toggle theme"
             >
-              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               </svg>
             </button>
             <button
@@ -110,8 +110,8 @@ function App() {
                 isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
               </svg>
             </button>
           </div>
