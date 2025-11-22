@@ -178,19 +178,13 @@ function App() {
                 disabled={isProcessing}
               />
               <div className="text-center">
-                <div className={`mx-auto w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-all ${
+                <div className={`mx-auto w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all ${
                   isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
                 } ${!isProcessing && 'hover:scale-110'}`}>
                   {isProcessing ? (
-                    <div className="animate-spin">
-                      <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                    </div>
+                    <span className="text-2xl animate-spin">⏳</span>
                   ) : (
-                    <svg className={`w-5 h-5 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-                    </svg>
+                    <span className={`text-3xl ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`}>↓</span>
                   )}
                 </div>
                 <h3 className={`text-xl font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
