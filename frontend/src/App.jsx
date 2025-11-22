@@ -88,30 +88,30 @@ function App() {
       <header className={`border-b ${isDark ? 'border-[#2a2a36] bg-[#0a0a0f]' : 'border-gray-200 bg-white'}`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🤖</span>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-semibold ${isDark ? 'bg-[#1a1a24] text-[#6b6b74]' : 'bg-gray-100 text-gray-500'}`}>
+              AI
+            </div>
             <span className={`text-lg font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Invoice AI Processor
             </span>
           </div>
           <div className="flex items-center gap-3">
+            {/* User icon - simple outline style like reference */}
             <button
-              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
-                isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
-              }`}
+              className={`p-2 transition-all hover:opacity-70 ${isDark ? 'text-[#6b6b74]' : 'text-gray-400'}`}
               title="User profile"
             >
-              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
               </svg>
             </button>
+            {/* Hamburger menu - simple lines like reference */}
             <button
-              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
-                isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
-              }`}
+              className={`p-2 transition-all hover:opacity-70 ${isDark ? 'text-[#6b6b74]' : 'text-gray-400'}`}
               title="Menu"
             >
-              <svg className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
               </svg>
             </button>
           </div>
