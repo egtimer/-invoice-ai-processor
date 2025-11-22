@@ -133,26 +133,26 @@ function App() {
           
           {/* Pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
-              <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
-              <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</span>
+              <span className={`text-xs font-medium whitespace-nowrap ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</span>
             </div>
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
-              <span className="text-yellow-400 text-lg animate-pulse">⚡</span>
-              <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Smart extraction</span>
+              <span className="text-yellow-400 text-base animate-pulse">⚡</span>
+              <span className={`text-xs font-medium whitespace-nowrap ${isDark ? 'text-white' : 'text-gray-900'}`}>Smart extraction</span>
             </div>
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+            <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
-              <span className="text-blue-400 text-lg">✨</span>
-              <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Export to JSON/CSV</span>
+              <span className="text-blue-400 text-base">✨</span>
+              <span className={`text-xs font-medium whitespace-nowrap ${isDark ? 'text-white' : 'text-gray-900'}`}>Export to JSON/CSV</span>
             </div>
           </div>
         </div>
@@ -178,18 +178,18 @@ function App() {
                 disabled={isProcessing}
               />
               <div className="text-center">
-                <div className={`mx-auto w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all ${
+                <div className={`mx-auto w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-all ${
                   isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
                 } ${!isProcessing && 'hover:scale-110'}`}>
                   {isProcessing ? (
                     <div className="animate-spin">
-                      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                       </svg>
                     </div>
                   ) : (
-                    <svg className={`w-6 h-6 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3 3m0 0l-3-3m3 3V8" />
+                    <svg className={`w-5 h-5 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
                     </svg>
                   )}
                 </div>
