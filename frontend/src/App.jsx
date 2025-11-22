@@ -354,14 +354,16 @@ function App() {
           <p className={`text-sm ${isDark ? 'text-[#6b6b74]' : 'text-gray-400'}`}>
             © 2025 Invoice AI Processor. Built with FastAPI, React, spaCy & Tesseract OCR.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-8">
             <a href="https://invoice-ai-processor-production.up.railway.app/docs" target="_blank" rel="noopener noreferrer"
-              className={`text-sm ${isDark ? 'text-[#a0a0a8] hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>
-              API Docs
+              className={`text-sm flex items-center gap-2 transition-all hover:scale-105 ${isDark ? 'text-[#a0a0a8] hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>
+              <span>📄</span>
+              <span>API Docs</span>
             </a>
             <a href="https://github.com/egtimer/-invoice-ai-processor" target="_blank" rel="noopener noreferrer"
-              className={`text-sm ${isDark ? 'text-[#a0a0a8] hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>
-              GitHub
+              className={`text-sm flex items-center gap-2 transition-all hover:scale-105 ${isDark ? 'text-[#a0a0a8] hover:text-white' : 'text-gray-600 hover:text-gray-900'}`}>
+              <span>💻</span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>
