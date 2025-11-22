@@ -132,7 +132,7 @@ function App() {
           </p>
           
           {/* Pills */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
             <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
@@ -303,47 +303,45 @@ function App() {
         )}
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+        <div className="grid grid-cols-3 gap-6 mt-16">
+          <div className={`p-6 rounded-2xl transition-all duration-200 ${
             isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
-          } hover:scale-105 hover:shadow-lg`}>
-            <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
-                <span className={`font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
+          } hover:shadow-xl`}>
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+                <span className={`font-bold text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
               </div>
               <div>
-                <h3 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</h3>
-                <p className={`text-sm ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Accurate text extraction from invoices</p>
+                <h3 className={`font-semibold mb-2 text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</h3>
+                <p className={`text-sm leading-relaxed ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Accurate text extraction from invoices</p>
               </div>
             </div>
           </div>
 
-          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+          <div className={`p-6 rounded-2xl transition-all duration-200 ${
             isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
-          } hover:scale-105 hover:shadow-lg`}>
-            <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
-                <span className="text-2xl">🎯</span>
+          } hover:shadow-xl`}>
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+                <span style={{fontSize: '24px'}}>🎯</span>
               </div>
               <div>
-                <h3 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Smart Field Extraction</h3>
-                <p className={`text-sm ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Capture invoice fields such as date and total</p>
+                <h3 className={`font-semibold mb-2 text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>Smart Field Extraction</h3>
+                <p className={`text-sm leading-relaxed ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Capture invoice fields such as date and total</p>
               </div>
             </div>
           </div>
 
-          <div className={`p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+          <div className={`p-6 rounded-2xl transition-all duration-200 ${
             isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-50 hover:bg-gray-100'
-          } hover:scale-105 hover:shadow-lg`}>
-            <div className="flex items-start gap-4">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
-                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                </svg>
+          } hover:shadow-xl`}>
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${isDark ? 'bg-[#16161e]' : 'bg-white'}`}>
+                <span style={{fontSize: '24px'}}>📤</span>
               </div>
               <div>
-                <h3 className={`font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Export in Multiple Formats</h3>
-                <p className={`text-sm ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Download extracted data as JSON or CSV</p>
+                <h3 className={`font-semibold mb-2 text-base ${isDark ? 'text-white' : 'text-gray-900'}`}>Export in Multiple Formats</h3>
+                <p className={`text-sm leading-relaxed ${isDark ? 'text-[#a0a0a8]' : 'text-gray-600'}`}>Download extracted data as JSON or CSV</p>
               </div>
             </div>
           </div>
