@@ -136,9 +136,10 @@ function App() {
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
-              <div className={`px-2 py-0.5 rounded transition-colors ${isDark ? 'bg-[#2a2a36]' : 'bg-gray-200'}`}>
-                <span className={`text-xs font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>OCR</span>
-              </div>
+              <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
               <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>Advanced OCR</span>
             </div>
             <div className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
@@ -177,19 +178,17 @@ function App() {
                 disabled={isProcessing}
               />
               <div className="text-center">
-                <div className={`mx-auto w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all ${
+                <div className={`mx-auto w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all ${
                   isDark ? 'bg-[#1a1a24]' : 'bg-gray-100'
                 } ${!isProcessing && 'hover:scale-110'}`}>
                   {isProcessing ? (
-                    <div className="relative">
-                      <div className="animate-spin">
-                        <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                      </div>
+                    <div className="animate-spin">
+                      <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
                     </div>
                   ) : (
-                    <svg className={`w-8 h-8 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-6 h-6 transition-transform ${isDark ? 'text-[#a0a0a8]' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3 3m0 0l-3-3m3 3V8" />
                     </svg>
                   )}
