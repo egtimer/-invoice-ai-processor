@@ -132,7 +132,7 @@ function App() {
           </p>
           
           {/* Pills */}
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
+          <div className="flex flex-wrap justify-center gap-8 mb-12">
             <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs transition-all duration-300 cursor-pointer ${
               isDark ? 'bg-[#1a1a24] hover:bg-[#1f1f2a]' : 'bg-gray-100 hover:bg-gray-200'
             } hover:scale-105`}>
