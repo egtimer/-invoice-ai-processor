@@ -1,0 +1,77 @@
+# Docker Compose for Invoice AI Processor v2
+# Upgraded architecture: Docling + Claude API
+
+version: '3.8'
+
+services:
+  # ===========================================
+  # Backend API (FastAPI + Docling + Claude)
+  # ===========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: invoice-processor-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=${DEBUG:-false}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - EXTRACTION_MODE=${EXTRACTION_MODE:-hybrid}
+      - LLM_ESCALATION_THRESHOLD=${LLM_ESCALATION_THRESHOLD:-0.7}
+      - DOCLING_OCR_ENABLED=${DOCLING_OCR_ENABLED:-true}
+      - DOCLING_TABLE_MODE=${DOCLING_TABLE_MODE:-accurate}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - uploads_data:/app/uploads
+      - results_data:/app/results
+      - docling_cache:/app/.docling_cache
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ===========================================
+  # Frontend (React + Vite)
+  # ===========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: invoice-processor-ui
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ===========================================
+  # Redis (for production queue/caching)
+  # ===========================================
+  redis:
+    image: redis:7-alpine
+    container_name: invoice-processor-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    profiles:
+      - production
+
+volumes:
+  uploads_data:
+  results_data:
+  docling_cache:
+  redis_data:
+
+networks:
+  default:
+    name: invoice-processor-network
