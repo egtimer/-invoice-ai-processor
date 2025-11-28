@@ -1,6 +1,6 @@
 // Invoice AI Processor v2 - Main App Component
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FileText,
   Loader2,

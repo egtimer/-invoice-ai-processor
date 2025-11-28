@@ -6,9 +6,9 @@ import {
   Building2,
   User,
   Calendar,
-  DollarSign,
+
   AlertTriangle,
-  CheckCircle,
+
   Sparkles,
   Cpu,
 } from 'lucide-react';
