@@ -278,7 +278,7 @@ function App() {
           <p className="text-sm text-gray-500 text-center">
             Invoice AI Processor v2.0 • Powered by Docling + Claude •{' '}
             
-              href="https://github.com/egtimer/invoice-ai-processor"
+              href="https://github.com/egtimer/-invoice-ai-processor"
               className="text-blue-600 hover:underline"
             >
               GitHub
