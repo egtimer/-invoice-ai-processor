@@ -276,13 +276,7 @@ function App() {
       <footer className="border-t border-gray-200 bg-white mt-auto">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <p className="text-sm text-gray-500 text-center">
-            Invoice AI Processor v2.0 • Powered by Docling + Claude •{' '}
-            
-              href="https://github.com/egtimer/-invoice-ai-processor"
-              className="text-blue-600 hover:underline"
-            >
-              GitHub
-            </a>
+            Invoice AI Processor v2.0 - Powered by Docling + Claude
           </p>
         </div>
       </footer>
