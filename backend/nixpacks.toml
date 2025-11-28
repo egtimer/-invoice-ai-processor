@@ -1,0 +1,21 @@
+[phases.setup]
+nixPkgs = ["python311", "gcc"]
+aptPkgs = ["poppler-utils", "libgl1-mesa-glx", "libglib2.0-0"]
+
+[phases.install]
+cmds = [
+    "python -m pip install --upgrade pip",
+    "python -m pip install -r requirements.txt",
+    "python -m spacy download es_core_news_sm || true"
+]
+
+[phases.build]
+cmds = [
+    "mkdir -p uploads results .docling_cache"
+]
+
+[start]
+cmd = "python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+
+[variables]
+PYTHONUNBUFFERED = "1"
