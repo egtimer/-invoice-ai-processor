@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir -r requirements.txt && \
+    python -m spacy download es_core_news_sm || true
 
 # Copy application code
 COPY app/ ./app/
@@ -24,6 +25,6 @@ RUN mkdir -p uploads results .docling_cache
 ENV PYTHONUNBUFFERED=1
 ENV DOCLING_CACHE_DIR=/app/.docling_cache
 
-EXPOSE 10000
+EXPOSE 8000
 
-CMD python -m uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
