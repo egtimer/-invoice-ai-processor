@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/app", "destination": "/app.html" },
+    { "source": "/app/(.*)", "destination": "/app.html" }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/app.*", "dest": "/app.html" }
+  ]
+}

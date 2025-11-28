@@ -15,5 +15,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      input: {
+        app: './index.html',
+      },
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+      },
+    },
   },
+  publicDir: 'public',
 });
