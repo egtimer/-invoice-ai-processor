@@ -1,12 +1,9 @@
-# Dockerfile for Invoice AI Processor v2
-# Uses Docling instead of Tesseract for better PDF understanding
-
+# Invoice AI Processor v2 - Backend Dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
 
 # Install system dependencies
-# Note: Docling handles its own OCR, but we keep poppler for PDF rendering
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     libgl1-mesa-glx \
@@ -14,32 +11,26 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
+# Copy requirements and install Python dependencies
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
-
-# Download spaCy Spanish model
-RUN python -m spacy download es_core_news_sm
+    pip install --no-cache-dir -r requirements.txt && \
+    python -m spacy download es_core_news_sm || true
 
 # Copy application code
-COPY . .
+COPY app/ ./app/
 
 # Create necessary directories
 RUN mkdir -p uploads results logs .docling_cache
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1 \
-    DOCLING_CACHE_DIR=/app/.docling_cache
+# Environment
+ENV PYTHONUNBUFFERED=1
+ENV DOCLING_CACHE_DIR=/app/.docling_cache
 
-# Expose port
 EXPOSE 8000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s \
     CMD curl -f http://localhost:8000/health || exit 1
 
 # Run the application
