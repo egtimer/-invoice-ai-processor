@@ -1,6 +1,4 @@
-// Invoice Upload Component with Drag & Drop
-
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { invoiceApi } from '../services/api';
@@ -53,7 +51,7 @@ export const InvoiceUpload: React.FC<InvoiceUploadProps> = ({
           ['.docx'],
       },
       maxFiles: 1,
-      maxSize: 20 * 1024 * 1024, // 20MB
+      maxSize: 20 * 1024 * 1024,
       disabled: isUploading,
     });
 
@@ -75,37 +73,37 @@ export const InvoiceUpload: React.FC<InvoiceUploadProps> = ({
         {isUploading ? (
           <>
             <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
-            <p className="text-gray-600">Subiendo factura...</p>
+            <p className="text-gray-600">Uploading invoice...</p>
           </>
         ) : uploadedFile ? (
           <>
             <CheckCircle className="w-12 h-12 text-green-500" />
             <p className="text-green-600 font-medium">{uploadedFile}</p>
-            <p className="text-sm text-gray-500">Haz clic para subir otra</p>
+            <p className="text-sm text-gray-500">Click to upload another</p>
           </>
         ) : isDragReject ? (
           <>
             <AlertCircle className="w-12 h-12 text-red-500" />
-            <p className="text-red-600">Archivo no soportado</p>
+            <p className="text-red-600">File not supported</p>
             <p className="text-sm text-gray-500">
-              Usa PDF, PNG, JPG o DOCX (máx. 20MB)
+              Use PDF, PNG, JPG or DOCX (max. 20MB)
             </p>
           </>
         ) : (
           <>
             <Upload className="w-12 h-12 text-gray-400" />
             {isDragActive ? (
-              <p className="text-blue-600 font-medium">Suelta el archivo aquí</p>
+              <p className="text-blue-600 font-medium">Drop the file here</p>
             ) : (
               <>
                 <p className="text-gray-600">
                   <span className="font-medium text-blue-600">
-                    Haz clic para seleccionar
+                    Click to select
                   </span>{' '}
-                  o arrastra una factura
+                  or drag an invoice
                 </p>
                 <p className="text-sm text-gray-500">
-                  PDF, PNG, JPG, DOCX (máx. 20MB)
+                  PDF, PNG, JPG, DOCX (max. 20MB)
                 </p>
               </>
             )}
