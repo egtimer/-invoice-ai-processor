@@ -10,11 +10,7 @@ docling
 # LLM
 anthropic
 
-# NLP
-spacy
-
 # Utilities
-pandas
 httpx
 aiofiles
 tenacity
